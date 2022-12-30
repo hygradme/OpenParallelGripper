@@ -1,16 +1,21 @@
 # Electric Parallel Gripper Bill Of Materials
 
-## 1. 3D print parts (stl files are available in parts/3dprint_parts/stl)
-  - Base x1
-  - TipCover x1
-  - ToArm x1
+## 1. 3D print parts 
+stl files are available in ./3dprint_parts/stl
+  - [Base](./3dprint_parts/stl/SCS3045MBase.stl) x1
+  - [TipCover](./3dprint_parts/stl/TipCover.stl) x1
+  - [ToArm](./3dprint_parts/stl/ToArm.stl) x1
+
+Note: To keep the gripper weight small, thickness of these parts are thin.
 
 ## 2. CNC Miling parts
-  - claw_base x2
-  - claw50mm x2
-  - rail_base_holder x2
-  - rail_fixer x2
-  - rack_to_rail_base x2
+step files and drawings are available in ./cnc_miling_parts/  
+Optionally, stl files for 3d printing are also available but these parts need stiffness so I recommend to use Aluminum for these parts.
+  - [claw_base](./cnc_miling_parts/claw_base.step) ([drawing](./cnc_miling_parts/drawing/claw_base.pdf)) x2
+  - [claw50mm](./cnc_miling_parts/claw50mm.step) ([drawing](./cnc_miling_parts/drawing/claw50mm.pdf)) x2
+  - [rail_base_holder](./cnc_miling_parts/rail_base_holder.step) ([drawing](./cnc_miling_parts/drawing/rail_base_holder.pdf)) x2
+  - [rail_fixer](./cnc_miling_parts/rail_fixer.step) ([drawing](./cnc_miling_parts/drawing/rail_fixer_edit.pdf)) x2
+  - [rack_to_rail_base](./cnc_miling_parts/rack_to_rail_base.step) ([drawing](./cnc_miling_parts/drawing/rack_to_rail_base.pdf)) x2
 
 ## 3. parts from shops
   - SCS3045M x1 (https://www.aliexpress.com/item/1005002219505397.html)
