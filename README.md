@@ -7,7 +7,7 @@ This gripper can also be used for UFACTORY xArm series and possibly with other i
 <img src="./photos/assembly.png" height="256"> <img src="./photos/assembly_grip_unit.png" height="256">
 <img src="./photos/withLITE6.jpg" height="256"> <img src="./photos/grip_unit_side.jpg" height="256">
 
-
+Video (pick and place example with UFACTORY LITE 6 and OPEN Parallel Gripper): https://www.youtube.com/shorts/wrYzYbHsh44
 
 ## Spec of the gripper
 - stroke: 0-55mm
@@ -29,3 +29,5 @@ If you prefer to use two digital inputs to control the gripper for simplicity, y
 
 If you want to control the gripper more detail, you need to use Modbus-RTU with RS485.
 
+## Contact
+https://twitter.com/EL2031watson
