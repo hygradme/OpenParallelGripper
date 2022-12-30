@@ -1,15 +1,16 @@
 #include <SCServo.h>
-
 #include "M5Atom.h"
-
 #include <ModbusRTU.h>
 
 SMS_STS sms_sts;
 unsigned int SERVO_POS = 0;
-#define RXPIN  (32)
-#define TXPIN  (26)
 
+#define TX_UART 33
+#define RX_UART 23
+ 
 // modbus-rtu setup
+#define RX_MODBUS 32
+#define TX_MODBUS 26
 #define SLAVE_ID 1
 #define REGN 10
 #define REG_GRIPPER_POS 128
@@ -17,6 +18,7 @@ unsigned int SERVO_POS = 0;
 
 #define LITE6_OUTPUT0 21
 #define LITE6_OUTPUT1 22
+
 int lite6_0;
 int lite6_1;
 uint16_t gripper_pos = 1500;
@@ -33,11 +35,11 @@ void setup() {
   M5.begin(true, false, true);
 
   // for servo control uart
-  Serial1.begin(1000000, SERIAL_8N1, 23, 33); 
+  Serial1.begin(1000000, SERIAL_8N1, RX_UART, TX_UART);
   sms_sts.pSerial = &Serial1;
 
   // modbus rtu
-  Serial2.begin(115200, SERIAL_8N1, RXPIN, TXPIN); 
+  Serial2.begin(115200, SERIAL_8N1, RX_MODBUS, TX_MODBUS);
   mb.begin(&Serial2);
   mb.slave(SLAVE_ID);
 
