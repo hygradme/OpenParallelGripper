@@ -6,6 +6,8 @@ stl files are available in ./3dprint_parts/stl
   - [TipCover](./3dprint_parts/stl/TipCover.stl) x1
   - [ToArm](./3dprint_parts/stl/ToArm.stl) x1
 
+<img src="./3dprint_parts.jpg" width="400">
+
 Note: To keep the gripper weight small, thickness of these parts are thin.
 
 ## 2. CNC Miling parts
@@ -32,6 +34,9 @@ Optionally, stl files for 3d printing are also available but these parts need st
   - M6x10mm bolt x2
   - M3 nut x12
   - M4 nut x4
+
+<img src="./cnc_miling_parts_and_purchased_parts.jpg" width="400">
+
 
 ## 4. electronic components (Just for reference. You can choose your own micro controller and other components to control the servo motor)
   - FE-URT1-C001 (https://www.aliexpress.com/item/1005001803208568.html)
