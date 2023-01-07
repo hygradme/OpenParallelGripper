@@ -20,6 +20,11 @@ Video (pick and place example with UFACTORY LITE 6 and OPEN Parallel Gripper): h
 ## BOM
 Check [BOM](./hardware/BOM.md)
 
+## Assemble instruction
+Gripping module:
+
+See https://www.youtube.com/watch?v=Q1Lmt6-BkuM
+
 ## Electronics
 See [Electronics](./electronics/README.md)
 ## Software
