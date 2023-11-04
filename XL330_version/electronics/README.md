@@ -7,6 +7,7 @@ Electronics are under development. The connection might be unstable. Soldering i
 
 
 Need to make cross Grove cable to use Grove pin header since the alignment of TX and RX of OpenRB-150 is different from RS485 (switch white and yellow wires of Grove cable)
+
 <img src="./grove_cross_cable.jpg" width="300">
 
 Need to add grove pin header and 2.54mm pitch terminal block
