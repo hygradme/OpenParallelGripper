@@ -4,7 +4,7 @@
 This project provides electric parallel gripper for UFACTORY LITE 6.
 This gripper can also be used for UFACTORY xArm series and possibly with other industrial cobots like Universal Robot etc.
 
-<img src="./photos/withLITE6.jpg" height="256"> <img src="./photos/withLite6_side.jpg" height="256">
+<img src="./photos/withLite6.jpg" height="256"> <img src="./photos/withLite6_side.jpg" height="256">
 
 <img src="./photos/OpenParallelGripper_XL330_version.jpg" height="300">
 
