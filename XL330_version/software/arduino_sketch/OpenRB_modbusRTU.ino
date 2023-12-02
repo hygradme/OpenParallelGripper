@@ -42,7 +42,7 @@ void setup() {
   DEBUG_SERIAL.begin(115200);
   
   // modbus RTU
-  Serial2.begin(57600, SERIAL_8N1);
+  Serial2.begin(115200, SERIAL_8N1);
   mb.begin(&Serial2);
   mb.slave(SLAVE_ID);
 
@@ -53,6 +53,8 @@ void setup() {
 }
 
 void loop() {
+    mb.task();
+
     lite6_0 = digitalRead(LITE6_OUTPUT0);
     lite6_1 = digitalRead(LITE6_OUTPUT1);
     if(lite6_0 == LOW && lite6_1 == HIGH){
@@ -66,15 +68,16 @@ void loop() {
     }
     else if(lite6_0 == LOW && lite6_1 == LOW){
 
+    if (mb.Hreg(REG_GRIPPER_POS) != gripper_pos) {
       gripper_pos = mb.Hreg(REG_GRIPPER_POS);
-    
       dxl.setGoalCurrent(DXL_ID, current_val);
       dxl.setGoalPosition(DXL_ID, gripper_pos, UNIT_DEGREE);
       
       DEBUG_SERIAL.print("Present gripper_pos(target) : ");
       DEBUG_SERIAL.println(gripper_pos);      
+
+      }
   }
-    mb.task();
     yield();
 
 }
