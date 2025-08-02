@@ -23,6 +23,10 @@ uint16_t gripper_close_pos = 0;
 const uint8_t DXL_ID = 1;
 const float DXL_PROTOCOL_VERSION = 2.0;
 int current_val = 75;//50;
+
+const int32_t PROFILE_VELOCITY_VALUE = 300;  // vel（unit: 0.229 rpm, 300 = 68.7rpm）
+const int32_t PROFILE_ACCELERATION_VALUE = 50; // acc（unit: 214.577rev/min^2）
+
 Dynamixel2Arduino dxl(DXL_SERIAL, DXL_DIR_PIN);
 
 using namespace ControlTableItem;
@@ -37,18 +41,23 @@ void setup() {
 
   dxl.torqueOff(DXL_ID);
   dxl.setOperatingMode(DXL_ID, OP_CURRENT_BASED_POSITION);
+
+  dxl.writeControlTableItem(PROFILE_VELOCITY, DXL_ID, PROFILE_VELOCITY_VALUE);
+  dxl.writeControlTableItem(PROFILE_ACCELERATION, DXL_ID, PROFILE_ACCELERATION_VALUE);
+
   dxl.torqueOn(DXL_ID);
 
   DEBUG_SERIAL.begin(115200);
   
   // modbus RTU
+  // Serial2.begin(115200, SERIAL_8N1);
   Serial2.begin(57600, SERIAL_8N1);
   mb.begin(&Serial2);
   mb.slave(SLAVE_ID);
 
   mb.addHreg(REG_GRIPPER_POS);
-  mb.Hreg(REG_GRIPPER_POS,  gripper_pos);
-  mb.addIreg(REG_READ_GRIPPER_POS, gripper_pos);
+  mb.Hreg(REG_GRIPPER_POS, gripper_pos);
+  mb.addHreg(REG_READ_GRIPPER_POS, 0);
   delay(1000);
 }
 
@@ -62,18 +71,20 @@ void loop() {
     else if(lite6_0 == HIGH && lite6_1 == LOW){
       dxl.setGoalCurrent(DXL_ID, current_val);
       dxl.setGoalPosition(DXL_ID, gripper_close_pos, UNIT_DEGREE);
-      
     }
     else if(lite6_0 == LOW && lite6_1 == LOW){
 
       gripper_pos = mb.Hreg(REG_GRIPPER_POS);
-    
       dxl.setGoalCurrent(DXL_ID, current_val);
       dxl.setGoalPosition(DXL_ID, gripper_pos, UNIT_DEGREE);
-      
       DEBUG_SERIAL.print("Present gripper_pos(target) : ");
-      DEBUG_SERIAL.println(gripper_pos);      
-  }
+      DEBUG_SERIAL.println(gripper_pos);
+    }
+
+    // write current position to holding register
+    float present_deg = dxl.getPresentPosition(DXL_ID, UNIT_DEGREE);
+    mb.Hreg(REG_READ_GRIPPER_POS, (uint16_t)present_deg);
+
     mb.task();
     yield();
 
